@@ -4,8 +4,10 @@ import { useBookStore } from "../services/store/useBookStore";
 import Container from "../components/common/Container";
 import NoBookIndicator from "../components/common/NoBookIndicator";
 import Button from "../components/common/Button";
+import Views from "../components/icons/Views";
+import User from "../components/icons/User";
 
-export default function Detalle() {
+export default function Detail() {
   const { id } = useParams();
   const { books } = useBookStore();
 
@@ -20,15 +22,21 @@ export default function Detalle() {
   }
 
   return (
-    <Container className={"!my-5"}>
+    <Container className={"!my-4"}>
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-2">
           <h2 className="text-3xl font-bold">Libro Consultado #{selectedBook.itemnumber}</h2>
         </div>
-        <Button style='!text-sm !py-2 !px-4' href='#' text='Ver pdf' />
+        <div className="flex items-center gap-5 text-right">
+          <div className="flex flex-col border rounded-lg p-2 border-red-500">
+            <span>Subido por Camilo  <User className='size-6 text-red-500 inline-block' /></span>
+            <span>50 vistas  <Views className='size-6 text-red-500 inline-block' /> </span>
+          </div>
+          <Button style='!text-sm !py-2 !px-4' href='#' text='Ver pdf' />
+        </div>
       </div>
 
-    <article className="mt-5 h-[80vh] mx-auto bg-white rounded-xl shadow-xl border border-amber-200 overflow-hidden">
+    <article className="mt-4 h-[80vh] mx-auto bg-white rounded-xl shadow-xl border border-amber-200 overflow-hidden">
       <div className="bg-amber-500 h-2"></div>
       <div className="p-6">
         <div className="grid grid-cols-3 grid-rows-4 gap-3">
