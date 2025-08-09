@@ -1,12 +1,12 @@
-import Button from "./Button";
-import Container from "./Container";
+import Button from "../common/Button";
+import Container from "../common/Container";
 
 export default function Category() {
   return (
     <Container>
       <div className="flex flex-col items-center gap-2 mb-5">
         <h2 className="text-4xl font-bold">Categorías</h2>
-        <span className="text-gray-700 ">
+        <span className="text-black/70 ">
           Busca material digital del Fondo Regional por categoría
         </span>
       </div>

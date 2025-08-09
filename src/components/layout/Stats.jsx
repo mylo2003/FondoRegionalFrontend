@@ -1,6 +1,6 @@
-import Users from "./Icons/Users";
-import Views from "./Icons/Views";
-import Books from "./Icons/Books";
+import Users from "../Icons/Users";
+import Views from "../Icons/Views";
+import Books from "../Icons/Books";
 
 export default function Stats() {
   return (
