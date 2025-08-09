@@ -1,6 +1,10 @@
-export default function SearchInput() {
+import { Link } from "react-router";
+
+export default function SearchInput({ onSubmit, onChange, value }) {
   return (
-    <form className="w-1/2">
+    <form className="w-1/2"
+          onSubmit={onSubmit}
+    >
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only"
@@ -30,14 +34,18 @@ export default function SearchInput() {
           id="default-search"
           className="block w-full p-4 ps-10 text-sm text-gray-900 rounded-lg bg-gray-50/80 focus:ring-red-500 focus:border-red-500"
           placeholder="Busca autor, título o descripción..."
-          required
+          value={value}
+          onChange={onChange}
         />
-        <button
-          type="submit"
-          className="text-white absolute end-2.5 bottom-2.5 bg-red-500 hover:bg-red-400 focus:ring-2 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 "
-        >
-          Buscar
-        </button>
+        {/* <Link to={'/material'}> */}
+          <button
+            type="submit"
+            className="text-white absolute end-2.5 bottom-2.5 bg-red-500 hover:bg-red-400 focus:ring-2 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2"
+          >
+            Buscar
+          </button>
+        {/* </Link> */}
+
       </div>
     </form>
   );

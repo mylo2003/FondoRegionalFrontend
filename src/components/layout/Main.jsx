@@ -1,7 +1,17 @@
+import { useNavigate } from "react-router";
+import { useState } from "react";
 import Container from "../common/Container";
 import SearchInput from "../common/SearchInput";
 
 export default function Main() {
+  const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/material?search=${encodeURIComponent(searchValue)}&page=0`);
+  };
+
   return (
     <main className="bg-[url(/FondoHemerografico.webp)] bg-contain bg-no-repeat mx-auto aspect-video">
       <Container className="max-w-5xl !mt-0 text-white font-semibold flex flex-col justify-center h-1/2">
@@ -11,7 +21,11 @@ export default function Main() {
             Material del Fondo Regional de Autores
           </h2>
         </div>
-        <SearchInput />
+        <SearchInput 
+          onSubmit={handleSearch}
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+        />
       </Container>
     </main>
   );
