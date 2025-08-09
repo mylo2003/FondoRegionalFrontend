@@ -1,21 +1,26 @@
-import { useMemo } from "react";
-import { useParams } from "react-router";
+import { useMemo, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import { useBookStore } from "../services/store/useBookStore";
 import Container from "../components/common/Container";
 import NoBookIndicator from "../components/common/NoBookIndicator";
 import Button from "../components/common/Button";
 import Views from "../components/icons/Views";
 import User from "../components/icons/User";
+import ArrowLeft from "../components/icons/ArrowLeft";
+import Restricted from "../components/modal/Restricted";
 
 export default function Detail() {
   const { id } = useParams();
   const { books } = useBookStore();
+  const navigate = useNavigate();
+
+  const [openModal, setOpenModal] = useState(false);
 
   const selectedBook = useMemo(() => {
     return books.find((book) => book?.itemnumber == id) || null;
   }, [books, id]);
 
-  console.log(selectedBook);
+  const restrictedBook = selectedBook?.restricted === 1 ? true : false;
 
   if (!selectedBook) {
     return <NoBookIndicator className='min-h-screen' />;
@@ -24,16 +29,22 @@ export default function Detail() {
   return (
     <Container className={"!my-4"}>
       <div className="flex justify-between items-center">
-        <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-2">
+          <button className="hover:text-red-400 cursor-pointer" onClick={() => navigate(-1)}><ArrowLeft /></button>
           <h2 className="text-3xl font-bold">Libro Consultado #{selectedBook.itemnumber}</h2>
         </div>
         <div className="flex items-center gap-5 text-right">
-          <Button style='!text-sm !py-2 !px-4' href='#' text='Ver pdf' />
-          <div className="flex flex-col border rounded-lg px-2 py-1 border-red-500">
+          {restrictedBook && <span className="leading-4">Debes acercarte a nuestra biblioteca <br /> para acceder a este libro</span>}
+          <Button 
+            onClick={() => {if (restrictedBook) return setOpenModal(!openModal)}} 
+            style='!text-sm !py-2 !px-4' 
+            href='#' 
+            text='Ver pdf' 
+          />
+          <div className="flex flex-col border rounded-lg px-2 py-1 border-red-500 leading-0">
             <span>Subido por Camilo  <User className='size-6 text-red-500 inline-block' /></span>
             <span>50 vistas  <Views className='size-6 text-red-500 inline-block' /> </span>
           </div>
-          
         </div>
       </div>
 
@@ -143,6 +154,9 @@ export default function Detail() {
       </div>
       </div>
     </article>
+    {
+      openModal && <Restricted book={selectedBook}  onClose={() => setOpenModal(!openModal)}/>
+    }
     </Container>
   );
 }

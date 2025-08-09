@@ -29,7 +29,7 @@ export default function SearchInput() {
           type="search"
           id="default-search"
           className="block w-full p-4 ps-10 text-sm text-gray-900 rounded-lg bg-gray-50/80 focus:ring-red-500 focus:border-red-500"
-          placeholder="Buscar autor, título..."
+          placeholder="Busca autor, título o descripción..."
           required
         />
         <button

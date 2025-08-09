@@ -8,10 +8,12 @@ import { useBookStore } from "../services/store/useBookStore";
 import LoadingIndicator from "../components/common/LoadingIndicator";
 import ErrorIndicator from "../components/common/ErrorIndicator";
 import NoBookIndicator from "../components/common/NoBookIndicator";
+import { Navigate, useNavigate } from "react-router";
 
 export default function Materials() {
   const { books, totalpages, error, loading, getBooks } = useBookStore();
   const [page, setPage] = useState(0); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     getBooks(20, page);
@@ -23,7 +25,8 @@ export default function Materials() {
 
   return (
     <Container className={"!my-0 py-10 max-w-7xl"}>
-      <div className="flex justify-between items-center max-w-6xl mx-auto mb-7">
+      <div className="flex justify-between items-center max-w-7xl mx-4 mb-7">
+         <button className="hover:text-red-400 cursor-pointer" onClick={() => navigate(-1)}><ArrowLeft /></button>
         <div className="flex flex-col gap-2 ">
           <h2 className="text-4xl font-bold">Material Consultado</h2>
           <span className="text-gray-800">
