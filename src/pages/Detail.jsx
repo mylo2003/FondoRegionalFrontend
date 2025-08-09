@@ -28,15 +28,16 @@ export default function Detail() {
           <h2 className="text-3xl font-bold">Libro Consultado #{selectedBook.itemnumber}</h2>
         </div>
         <div className="flex items-center gap-5 text-right">
-          <div className="flex flex-col border rounded-lg p-2 border-red-500">
+          <Button style='!text-sm !py-2 !px-4' href='#' text='Ver pdf' />
+          <div className="flex flex-col border rounded-lg px-2 py-1 border-red-500">
             <span>Subido por Camilo  <User className='size-6 text-red-500 inline-block' /></span>
             <span>50 vistas  <Views className='size-6 text-red-500 inline-block' /> </span>
           </div>
-          <Button style='!text-sm !py-2 !px-4' href='#' text='Ver pdf' />
+          
         </div>
       </div>
 
-    <article className="mt-4 h-[80vh] mx-auto bg-white rounded-xl shadow-xl border border-amber-200 overflow-hidden">
+    <article className="mt-4 h-full mx-auto bg-white rounded-xl shadow-xl border border-amber-200 overflow-hidden">
       <div className="bg-amber-500 h-2"></div>
       <div className="p-6">
         <div className="grid grid-cols-3 grid-rows-4 gap-3">

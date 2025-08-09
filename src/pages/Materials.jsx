@@ -45,7 +45,7 @@ export default function Materials() {
         <div className="flex">
           <button 
             onClick={() => {
-              setPage(page - 1);   
+              setPage(page < 1 ? 0 : page - 1);   
               window.scrollTo({ top: 0 });
             }} 
             className="cursor-pointer flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-800 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700">
