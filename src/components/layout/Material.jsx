@@ -1,24 +1,19 @@
 import { useEffect, useState } from 'react';
 import Container from '../common/Container'
 import Button from '../common/Button'
-import { instance } from '../../services/api'
 import BookCard from '../common/BookCard';
+import { useBookStore } from '../../services/store/useBookStore';
 
 export default function Material() {
-  const [books, setBooks] = useState([]);
+  const { books, error, loading, getBooks } = useBookStore();
 
-  async function getMaterial() {
-    try {
-      const response = await instance.get('/fondo-regional?size=4');
-      console.log(response);
-      setBooks(response?.data?.content)
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  useEffect(()=> {
-    getMaterial();
-  }, [])
+  useEffect(() => {
+    getBooks(4, 0);
+  }, []);
+
+  if (loading) return <div>Loading...</div>
+  if (error) return <div>Error al cargar los libros</div>
+  if (!books) return <div>No hay libros disponibles</div>
 
   return (
     <div className='bg-stone-800'>

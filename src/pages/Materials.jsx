@@ -1,27 +1,22 @@
 import { useEffect, useState } from "react";
-import { instance } from "../services/api";
 import Container from "../components/common/Container";
 import BookCard from "../components/common/BookCard";
 import ArrowRight from "../components/Icons/ArrowRight";
 import ArrowLeft from "../components/Icons/ArrowLeft";
 import SearchInput from "../components/common/SearchInput";
+import { useBookStore } from "../services/store/useBookStore";
 
 export default function Materials() {
-  const [books, setBooks] = useState([]);
-  const [pag, setPag] = useState(0); 
+  const { books, error, loading, getBooks } = useBookStore();
+  const [page, setPage] = useState(0); 
 
-  async function getMaterial() {
-    try {
-      const response = await instance.get(`/fondo-regional?page=${pag}`);
-      console.log(response);
-      setBooks(response?.data?.content);
-    } catch (error) {
-      console.error(error);
-    }
-  }
   useEffect(() => {
-    getMaterial();
-  }, [pag]);
+    getBooks(20, page);
+  }, [page]);
+
+  if (loading) return <div>Loading...</div>
+  if (error) return <div>Error al cargar los libros</div>
+  if (!books) return <div>No hay libros disponibles</div>
 
   return (
     <Container className={"!my-0 py-10 max-w-7xl"}>
@@ -37,7 +32,7 @@ export default function Materials() {
       </div>
 
       <div className="grid grid-cols-4 place-items-center space-y-2">
-        {books.map((book) => (
+        {books?.map((book) => (
           <BookCard key={book.itemnumber} data={book} />
         ))}
       </div>
@@ -46,7 +41,7 @@ export default function Materials() {
       <div className="flex justify-center mt-5">
         <button 
           onClick={() => {
-            setPag(pag - 1);   
+            setPage(page - 1);   
             window.scrollTo({ top: 0 });
           }} 
           className="cursor-pointer flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-black/70 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700">
@@ -55,7 +50,7 @@ export default function Materials() {
         </button>
         <button 
           onClick={() => {
-            setPag(pag + 1);   
+            setPage(page + 1);   
             window.scrollTo({ top: 0 });
           }} 
         className="cursor-pointer flex items-center justify-center px-3 h-8 text-sm font-medium text-black/70 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700">

@@ -1,7 +1,9 @@
+import { Link } from "react-router";
+
 export default function BookCard({ data }) {
   return (
-    <a
-      href="#"
+    <Link
+      to={`/libro/${data?.itemnumber}`}
       className="w-72 bg-white rounded-lg shadow-lg border border-amber-200 p-4 hover:-translate-y-2 transition-transform"
     >
       <div className="bg-gradient-to-r from-amber-500 to-orange-500 h-1 rounded mb-4"></div>
@@ -55,6 +57,6 @@ export default function BookCard({ data }) {
           Fondo Regional
         </span>
       </div>
-    </a>
+    </Link>
   );
 }

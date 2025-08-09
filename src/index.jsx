@@ -6,6 +6,7 @@ import Home from './pages/Home.jsx';
 import Materials from './pages/Materials.jsx';
 import Layout from './pages/Layout.jsx';
 import '@fontsource-variable/roboto-slab';
+import Detalle from './pages/Detalle.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')).render(
          <Route element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="material" element={<Materials />} />
+            <Route path="libro/:id" element={<Detalle />} />
          </Route>
       </Routes>
     </BrowserRouter>
