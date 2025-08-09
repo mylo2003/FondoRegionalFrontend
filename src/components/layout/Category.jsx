@@ -6,7 +6,7 @@ export default function Category() {
     <Container>
       <div className="flex flex-col items-center gap-2 mb-5">
         <h2 className="text-4xl font-bold">Categorías</h2>
-        <span className="text-black/70 ">
+        <span className="text-gray-800 ">
           Busca material digital del Fondo Regional por categoría
         </span>
       </div>
