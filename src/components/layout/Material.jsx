@@ -15,11 +15,11 @@ export default function Material() {
   }, []);
   
   return (
-    <div className='bg-stone-800'>
-      <Container className={'!my-0 py-15 text-white max-w-7xl'}>
+    <div id='material' className=''>
+      <Container className={'!my-0 py-15  max-w-7xl'}>
         <div className="flex flex-col items-center gap-2 mb-5">
           <h2 className="text-4xl font-bold">Material Consultado</h2>
-          <span className="text-white/80 ">
+          <span className="">
             Acceda a todo el material del Fondo Regional digitalizado, para usted
           </span>
         </div>

@@ -1,10 +1,16 @@
 import { Link } from "react-router";
+import { useStatsStore } from "../../services/store/useStatsStore";
 
 export default function BookCard({ data }) {
+  const { addView } = useStatsStore();
+
   return (
     <Link
       to={`/libro/${data?.itemnumber}`}
-      onClick={() => window.scrollTo({ top: 0 })}
+      onClick={() => {
+        window.scrollTo({ top: 0 });
+        addView();
+      }}
       className="w-72 bg-white rounded-lg shadow-lg border border-amber-200 p-4 hover:-translate-y-2 transition-transform"
     >
       <div className="bg-amber-500 h-1 rounded mb-4"></div>

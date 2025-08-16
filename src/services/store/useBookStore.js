@@ -11,12 +11,11 @@ export const useBookStore = create((set) => ({
   getBooks: async (size, page) => {
     try {
       set({ books: [], totalpages: 0, error: false, loading: true });
-      const response = await instance.get(`/fondo-regional?size=${size}&page=${page}`);
-      console.log(response);
+      const { data } = await instance.get(`/libros?size=${size}&page=${page}`);
       set({ 
-          books: response?.data?.content, 
-          totalpages: response?.data?.totalPages, 
-          totalElements: response?.data?.totalElements,
+          books: data?.content, 
+          totalpages: data?.totalPages, 
+          totalElements: data?.totalElements,
           error: false, 
           loading: false 
       });
@@ -29,11 +28,10 @@ export const useBookStore = create((set) => ({
   getFilterBooks: async (query, size, page) => {
     try {
       set({ books: [], totalpages: 0, error: false, loading: true });
-      const response = await instance.get(`/fondo-regional/filtro?search=${query}&size=${size}&page=${page}`);
-      console.log(response);
+      const { data } = await instance.get(`/libros/filtro?search=${query}&size=${size}&page=${page}`);
       set({ 
-          books: response?.data?.content, 
-          totalpages: response?.data?.totalPages,
+          books: data?.content, 
+          totalpages: data?.totalPages,
           error: false, 
           loading: false 
       });

@@ -20,7 +20,7 @@ export default function Header() {
           </div>
         </a>
         <div className="flex items-center gap-5">
-          <p className="border border-red-500 font-semibold rounded-lg px-4 py-2 cursor-pointer hover:bg-red-400 transition-colors">Categorías</p>
+          <a href="#material" className="border border-red-500 font-semibold rounded-lg px-4 py-2 cursor-pointer hover:bg-red-400 transition-colors">Material</a>
           {/* <Dropdown /> */}
           <button className="bg-red-500 font-semibold text-white rounded-lg px-4 py-2 cursor-pointer hover:bg-red-400 transition-colors">
             Ingresar

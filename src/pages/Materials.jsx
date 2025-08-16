@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import { useBookStore } from "../services/store/useBookStore";
 import Container from "../components/common/Container";
 import BookCard from "../components/common/BookCard";
@@ -13,7 +13,6 @@ import NoBookIndicator from "../components/common/NoBookIndicator";
 export default function Materials() {
   const { books, totalpages, error, loading, getFilterBooks } = useBookStore();
   const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
 
   const [page, setPage] = useState(Number(searchParams.get("page")) || 0);
   const [searchValue, setSearchValue] = useState(searchParams.get("search") || "");
@@ -58,12 +57,14 @@ export default function Materials() {
   return (
     <Container className="!my-0 py-10 max-w-7xl">
       <div className="flex justify-between items-center max-w-7xl mx-4 mb-7">
-        <button
-          className="hover:text-red-400 cursor-pointer"
-          onClick={() => navigate(-1)}
-        >
-          <ArrowLeft />
-        </button>
+        <Link to={'/'}>
+            <button
+              className="hover:text-red-400 cursor-pointer"
+            >
+              <ArrowLeft />
+            </button>
+        </Link>
+
         <div className="flex flex-col gap-2 ">
           <h2 className="text-4xl font-bold">Material Consultado</h2>
           <span className="text-gray-800">
