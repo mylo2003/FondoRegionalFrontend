@@ -1,10 +1,6 @@
-import { Link } from "react-router";
-
 export default function SearchInput({ onSubmit, onChange, value }) {
   return (
-    <form className="w-1/2"
-          onSubmit={onSubmit}
-    >
+    <form className="w-1/2" onSubmit={onSubmit}>
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only"

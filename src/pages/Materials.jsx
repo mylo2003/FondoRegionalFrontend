@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router";
 import { useBookStore } from "../services/store/useBookStore";
-import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { ChevronRight, ChevronLeft } from "lucide-react";
 import Container from "../components/common/Container";
 import BookCard from "../components/common/BookCard";
 import SearchInput from "../components/common/SearchInput";
@@ -14,7 +14,9 @@ export default function Materials() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [page, setPage] = useState(Number(searchParams.get("page")) || 0);
-  const [searchValue, setSearchValue] = useState(searchParams.get("search") || "");
+  const [searchValue, setSearchValue] = useState(
+    searchParams.get("search") || ""
+  );
 
   useEffect(() => {
     getFilterBooks(searchValue, 20, page);
@@ -42,7 +44,7 @@ export default function Materials() {
     setPage(0);
     setSearchParams({ search: searchValue, page: 0 });
   };
-  
+
   const handlePageChange = (newPage) => {
     setPage(newPage);
     setSearchParams({ search: searchValue, page: newPage });
@@ -56,18 +58,17 @@ export default function Materials() {
   return (
     <Container className="!my-0 py-10 max-w-7xl">
       <div className="flex justify-between items-center max-w-7xl mx-4 mb-7">
-        <Link to={'/'}>
-            <button
-              className="hover:text-red-400 cursor-pointer"
-            >
-              <ChevronLeft />
-            </button>
+        <Link to={"/"}>
+          <button className="hover:text-red-400 cursor-pointer">
+            <ChevronLeft />
+          </button>
         </Link>
 
         <div className="flex flex-col gap-2 ">
           <h2 className="text-4xl font-bold">Material Consultado</h2>
           <span className="text-gray-800">
-            Acceda a todo el material del Fondo Regional digitalizado, para usted
+            Acceda a todo el material del Fondo Regional digitalizado, para
+            usted
           </span>
         </div>
         <SearchInput
@@ -81,9 +82,7 @@ export default function Materials() {
         {books.length <= 0 ? (
           <NoBookIndicator className="min-h-80" />
         ) : (
-          books?.map((book) => (
-            <BookCard key={book.itemnumber} data={book} />
-          ))
+          books?.map((book) => <BookCard key={book.itemnumber} data={book} />)
         )}
       </div>
 
@@ -92,7 +91,9 @@ export default function Materials() {
           <button
             disabled={page < 1}
             onClick={() => handlePageChange(page - 1)}
-            className={`${page < 1 ? "text-gray-50 disabled:cursor-not-allowed" : ""} cursor-pointer flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-800 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700`}
+            className={`${
+              page < 1 ? "text-gray-50 disabled:cursor-not-allowed" : ""
+            } cursor-pointer flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-800 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700`}
           >
             <ChevronLeft />
             Anterior
@@ -100,7 +101,11 @@ export default function Materials() {
           <button
             disabled={totalpages <= page + 1}
             onClick={() => handlePageChange(page + 1)}
-            className={`${totalpages <= page + 1 ? "text-gray-50 disabled:cursor-not-allowed" : ""} cursor-pointer flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-800 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700`}
+            className={`${
+              totalpages <= page + 1
+                ? "text-gray-50 disabled:cursor-not-allowed"
+                : ""
+            } cursor-pointer flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-800 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700`}
           >
             Siguiente
             <ChevronRight />

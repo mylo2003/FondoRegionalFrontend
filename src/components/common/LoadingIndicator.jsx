@@ -1,6 +1,8 @@
 export default function LoadingIndicator({ text, className }) {
   return (
-    <div className={`flex flex-col items-center gap-2 justify-center min-w-7xl mx-auto ${className}`}>
+    <div
+      className={`flex flex-col items-center gap-2 justify-center min-w-7xl mx-auto ${className}`}
+    >
       <div role="status">
         <svg
           aria-hidden="true"
@@ -19,7 +21,7 @@ export default function LoadingIndicator({ text, className }) {
           />
         </svg>
       </div>
-      <span>Cargando {text || 'libros'}...</span>
+      <span>Cargando {text || "libros"}...</span>
     </div>
   );
 }

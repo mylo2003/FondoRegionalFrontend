@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useBookStore } from "../../services/store/useBookStore";
 import { useStatsStore } from "../../services/store/useStatsStore";
-import { Users, Book, Eye } from 'lucide-react';
+import { Users, Book, Eye } from "lucide-react";
 
 export default function Stats() {
-  const { views, downloads, getStats } = useStatsStore(); 
+  const { views, downloads, getStats } = useStatsStore();
   const { totalElements } = useBookStore();
 
   useEffect(() => {

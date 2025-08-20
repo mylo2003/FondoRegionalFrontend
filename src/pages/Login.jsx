@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { Eye, EyeOff, Lock, User } from 'lucide-react';
-import { useLoginStore } from '../services/store/useLoginStore';
+import { useState } from "react";
+import { Eye, EyeOff, Lock, User } from "lucide-react";
+import { useLoginStore } from "../services/store/useLoginStore";
 import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
   const { error, loading, auth } = useLoginStore();
 
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -16,38 +16,38 @@ export default function Login() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
 
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ''
+        [name]: "",
       }));
     }
   };
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.email.trim()) {
-      newErrors.email = 'El correo es requerido';
+      newErrors.email = "El correo es requerido";
     }
-    
+
     if (!formData.password.trim()) {
-      newErrors.password = 'La contraseña es requerida';
+      newErrors.password = "La contraseña es requerida";
     } else if (formData.password.length < 4) {
-      newErrors.password = 'La contraseña debe tener al menos 4 caracteres';
+      newErrors.password = "La contraseña debe tener al menos 4 caracteres";
     }
-    
+
     return newErrors;
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    
+
     const formErrors = validateForm();
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
@@ -63,34 +63,32 @@ export default function Login() {
         localStorage.setItem("token", token);
 
         const decoded = jwtDecode(token);
-        const role = decoded.role; 
+        const role = decoded.role;
 
-        console.log(role)
+        console.log(role);
         if (role === "administrador") {
           window.location.href = "/panel";
         } else {
           window.location.href = "/";
         }
-
       } else {
         setErrors({
-          general: 'Correo o contraseña incorrectos'
+          general: "Correo o contraseña incorrectos",
         });
       }
     } catch (error) {
       setErrors({
-        general: 'Credenciales incorrectas. Intenta nuevamente.'
+        general: "Credenciales incorrectas. Intenta nuevamente.",
       });
-    } 
+    }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-100 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-34">
-            <img className='w-full h-20' src="/logo.webp" alt="" />
+            <img className="w-full h-20" src="/logo.webp" alt="" />
           </div>
         </div>
 
@@ -112,7 +110,10 @@ export default function Login() {
 
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Correo
               </label>
               <div className="relative">
@@ -126,9 +127,9 @@ export default function Login() {
                   value={formData.email}
                   onChange={handleInputChange}
                   className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors ${
-                    errors.email 
-                      ? 'border-red-300 bg-red-50' 
-                      : 'border-gray-300 bg-white hover:border-gray-400'
+                    errors.email
+                      ? "border-red-300 bg-red-50"
+                      : "border-gray-300 bg-white hover:border-gray-400"
                   }`}
                   placeholder="Ingresa tu usuario"
                 />
@@ -139,7 +140,10 @@ export default function Login() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Contraseña
               </label>
               <div className="relative">
@@ -147,15 +151,15 @@ export default function Login() {
                   <Lock className="h-5 w-5 text-gray-400" />
                 </div>
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
                   className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors ${
-                    errors.password 
-                      ? 'border-red-300 bg-red-50' 
-                      : 'border-gray-300 bg-white hover:border-gray-400'
+                    errors.password
+                      ? "border-red-300 bg-red-50"
+                      : "border-gray-300 bg-white hover:border-gray-400"
                   }`}
                   placeholder="Ingresa tu contraseña"
                 />
@@ -181,8 +185,8 @@ export default function Login() {
               disabled={loading}
               className={`w-full py-3 px-4 cursor-pointer rounded-lg font-semibold text-white transition-all duration-200 ${
                 loading
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-red-500 hover:bg-red-600 hover:shadow-lg'
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-red-500 hover:bg-red-600 hover:shadow-lg"
               }`}
             >
               {loading ? (
@@ -191,16 +195,14 @@ export default function Login() {
                   <span>Iniciando sesión...</span>
                 </div>
               ) : (
-                'Iniciar Sesión'
+                "Iniciar Sesión"
               )}
             </button>
           </div>
         </div>
 
         <div className="text-center mt-6">
-          <p className="text-sm text-gray-500">
-            Fondo Regional - Bibliocúcuta
-          </p>
+          <p className="text-sm text-gray-500">Fondo Regional - Bibliocúcuta</p>
           <p className="text-xs text-gray-400 mt-1">
             © 2025 Biblioteca Pública Julio Pérez Ferrero
           </p>

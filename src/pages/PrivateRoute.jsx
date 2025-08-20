@@ -21,7 +21,6 @@ export default function PrivateRoute({ children, role }) {
     }
 
     return children;
-    
   } catch (error) {
     return <Navigate to="/login" replace />;
   }

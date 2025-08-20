@@ -21,7 +21,7 @@ export default function Main() {
             Material del Fondo Regional de Autores
           </h2>
         </div>
-        <SearchInput 
+        <SearchInput
           onSubmit={handleSearch}
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}

@@ -1,6 +1,8 @@
 export default function NoBookIndicator({ className }) {
   return (
-    <div className={`flex flex-col items-center gap-2 justify-center min-w-7xl mx-auto ${className}`}>
+    <div
+      className={`flex flex-col items-center gap-2 justify-center min-w-7xl mx-auto ${className}`}
+    >
       <div role="status">
         <svg
           xmlns="http://www.w3.org/2000/svg"

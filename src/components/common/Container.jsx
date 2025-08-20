@@ -3,5 +3,5 @@ export default function Container({ children, className }) {
     <section className={`max-w-6xl mx-auto my-15 ${className}`}>
       {children}
     </section>
-  )
+  );
 }

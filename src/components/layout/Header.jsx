@@ -1,11 +1,7 @@
-import { Link } from "react-router";
-import { logout } from "../../services/authService"
 import ButtonSesion from "../common/ButtonSesion";
 import GenericButton from "../common/GenericButton";
 
 export default function Header() {
-  const token = localStorage.getItem("token");
-
   return (
     <header className="py-6 sticky top-0 z-50 bg-white/80 backdrop-blur-md border border-b border-gray-200">
       <div className="max-w-6xl flex justify-between mx-auto ">
@@ -25,7 +21,11 @@ export default function Header() {
           </div>
         </a>
         <div className="flex items-center gap-5">
-          <GenericButton onClick={()=> window.location.href = '#material'} text='Material' type='secondary' />
+          <GenericButton
+            onClick={() => (window.location.href = "#material")}
+            text="Material"
+            type="secondary"
+          />
           <ButtonSesion />
         </div>
       </div>

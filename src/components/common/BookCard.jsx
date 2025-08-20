@@ -36,7 +36,7 @@ export default function BookCard({ data }) {
               Título
             </h3>
             <p className="text-sm font-bold text-gray-800 leading-tight">
-              {data?.title?.replace(' /', '') || "Título no disponible"}
+              {data?.title?.replace(" /", "") || "Título no disponible"}
             </p>
           </div>
           <div>
@@ -54,7 +54,11 @@ export default function BookCard({ data }) {
             <p className="text-xs text-gray-800 leading-tight">
               {data?.branchname || "Biblioteca no especificada"}
             </p>
-            <p className="text-xs text-gray-800 mt-2">  {data?.branchcity || "Ciudad"}, {data?.branchstate || "Departamento"}</p>
+            <p className="text-xs text-gray-800 mt-2">
+              {" "}
+              {data?.branchcity || "Ciudad"},{" "}
+              {data?.branchstate || "Departamento"}
+            </p>
           </div>
         </div>
       </div>

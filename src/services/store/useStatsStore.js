@@ -1,5 +1,5 @@
-import { create } from 'zustand'
-import { instance } from '../api';
+import { create } from "zustand";
+import { instance } from "../api";
 
 export const useStatsStore = create((set) => ({
   views: 0,
@@ -11,7 +11,12 @@ export const useStatsStore = create((set) => ({
     try {
       set({ views: 0, downloads: 0, error: false, loading: true });
       const { data } = await instance.get("/estadisticas");
-      set({ views: data?.vistas, downloads: data?.descargas, error: false, loading: false });
+      set({
+        views: data?.vistas,
+        downloads: data?.descargas,
+        error: false,
+        loading: false,
+      });
     } catch (error) {
       set({ views: 0, downloads: 0, error: true, loading: false });
       console.error(error);
@@ -39,4 +44,4 @@ export const useStatsStore = create((set) => ({
       set({ error: true, loading: false });
     }
   },
-}))
+}));

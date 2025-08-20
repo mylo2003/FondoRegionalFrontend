@@ -1,5 +1,5 @@
-import { create } from 'zustand'
-import { instance } from '../api';
+import { create } from "zustand";
+import { instance } from "../api";
 
 export const useBookStore = create((set) => ({
   books: [],
@@ -12,15 +12,21 @@ export const useBookStore = create((set) => ({
     try {
       set({ books: [], totalpages: 0, error: false, loading: true });
       const { data } = await instance.get(`/libros?size=${size}&page=${page}`);
-      set({ 
-          books: data?.content, 
-          totalpages: data?.totalPages, 
-          totalElements: data?.totalElements,
-          error: false, 
-          loading: false 
+      set({
+        books: data?.content,
+        totalpages: data?.totalPages,
+        totalElements: data?.totalElements,
+        error: false,
+        loading: false,
       });
     } catch (error) {
-      set({ books: [], totalpages: 0, totalElements: 0, error: true, loading: false });
+      set({
+        books: [],
+        totalpages: 0,
+        totalElements: 0,
+        error: true,
+        loading: false,
+      });
       console.error(error);
     }
   },
@@ -28,16 +34,18 @@ export const useBookStore = create((set) => ({
   getFilterBooks: async (query, size, page) => {
     try {
       set({ books: [], totalpages: 0, error: false, loading: true });
-      const { data } = await instance.get(`/libros/filtro?search=${query}&size=${size}&page=${page}`);
-      set({ 
-          books: data?.content, 
-          totalpages: data?.totalPages,
-          error: false, 
-          loading: false 
+      const { data } = await instance.get(
+        `/libros/filtro?search=${query}&size=${size}&page=${page}`
+      );
+      set({
+        books: data?.content,
+        totalpages: data?.totalPages,
+        error: false,
+        loading: false,
       });
     } catch (error) {
       set({ books: [], totalpages: 0, error: true, loading: false });
       console.error(error);
     }
   },
-}))
+}));

@@ -1,6 +1,8 @@
 export default function ErrorIndicator({ className }) {
   return (
-    <div className={`flex flex-col items-center gap-2 justify-center min-w-7xl mx-auto ${className}`}>
+    <div
+      className={`flex flex-col items-center gap-2 justify-center min-w-7xl mx-auto ${className}`}
+    >
       <div role="status">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +22,10 @@ export default function ErrorIndicator({ className }) {
           <path d="M12 16v.01" />
         </svg>
       </div>
-      <span className="text-center">Ha ocurrido un error al cargar la información, <br /> recargue la página por favor...</span>
+      <span className="text-center">
+        Ha ocurrido un error al cargar la información, <br /> recargue la página
+        por favor...
+      </span>
     </div>
   );
 }

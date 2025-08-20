@@ -1,25 +1,25 @@
-
-import { Trash2, User } from 'lucide-react';
+import { Trash2, User } from "lucide-react";
 import { useEffect } from "react";
-import { useUserStore } from '../../services/store/useUserStore';
-import LoadingIndicator from '../common/LoadingIndicator';
+import { useUserStore } from "../../services/store/useUserStore";
+import LoadingIndicator from "../common/LoadingIndicator";
 
-export default function UsersTable( ) {
+export default function UsersTable() {
   const { users, error, loading, getUsers, deleteUser } = useUserStore();
-  
-  useEffect(()=> {
+
+  useEffect(() => {
     getUsers();
-  }, [])
+  }, []);
 
   const handleDeleteUser = (id) => {
-    if (window.confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
-      alert('Usuario eliminado exitosamente');
+    if (window.confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
+      alert("Usuario eliminado exitosamente");
     }
 
     deleteUser(id);
   };
 
-  if (loading) return <LoadingIndicator className='!h-[500px]'  text='usuarios' />
+  if (loading)
+    return <LoadingIndicator className="!h-[500px]" text="usuarios" />;
 
   return (
     <div className="space-y-6 mr-5">
@@ -29,7 +29,7 @@ export default function UsersTable( ) {
           Total: {users?.length} usuarios
         </div>
       </div>
-      
+
       <div className="bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
@@ -63,28 +63,34 @@ export default function UsersTable( ) {
                         </div>
                       </div>
                       <div className="ml-4">
-                        <div className="text-sm font-medium text-gray-900">{user?.nombre} {user?.apellido}</div>
+                        <div className="text-sm font-medium text-gray-900">
+                          {user?.nombre} {user?.apellido}
+                        </div>
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div>
-                      <div className="text-sm text-gray-900">{user?.correo}</div>
+                      <div className="text-sm text-gray-900">
+                        {user?.correo}
+                      </div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {user?.fechaModificacion}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">              
-                    <span className={`inline-flex uppercase px-2 py-1 text-xs font-semibold rounded-full ${
-                      user?.rol === 'Usuario' 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-red-100 text-red-800'
-                    }`}>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span
+                      className={`inline-flex uppercase px-2 py-1 text-xs font-semibold rounded-full ${
+                        user?.rol === "Usuario"
+                          ? "bg-green-100 text-green-800"
+                          : "bg-red-100 text-red-800"
+                      }`}
+                    >
                       {user.rol}
-                    </span>                  
+                    </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">                   
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <div className="flex space-x-2">
                       <button
                         onClick={() => handleDeleteUser(user.id)}
@@ -101,5 +107,5 @@ export default function UsersTable( ) {
         </div>
       </div>
     </div>
-  )
+  );
 }
