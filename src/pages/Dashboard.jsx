@@ -3,13 +3,14 @@ import { useState } from "react";
 import UsersTable from "../components/modal/UsersTable";
 import CreateUser from "../components/modal/CreateUser";
 import { logout } from "../services/authService"
+import GenericButton from "../components/common/GenericButton"
 
 export default function Dashboard() {
   const [activeView, setActiveView] = useState('users');
 
   return (
-      <main className="flex relative min-h-screen bg-gray-100">
-      <aside className="h-screen w-60 bg-stone-800 text-white sticky top-0">
+    <main className="grid grid-cols-5 grid-rows-5 gap-4 min-h-screen overflow-hidden">
+      <aside className="row-span-5 bg-stone-800 text-white sticky top-0">
         <div className="py-2 mx-6 mt-5 rounded-xl bg-white flex justify-center items-center">
           <div className="rounded h-12 w-30  flex items-center justify-center text-white font-bold text-sm">
             <img
@@ -53,21 +54,20 @@ export default function Dashboard() {
         </div>
       </aside>
 
-      <section className="flex-1 p-6">
-        <div className="mb-6">
-          <h2 className="text-3xl font-semibold text-gray-800">Panel Administrativo</h2>
-          <p className="text-gray-600 mt-1">Gestión de usuarios de la biblioteca</p>
+      <header className="col-span-4 flex justify-between items-center mx-7">
+        <div>
+          <h2 className="text-3xl font-semibold">Panel Administrativo</h2>
+          <p className="text-gray-800">Gestión de usuarios de la biblioteca</p>
         </div>
-
+        <div className="flex gap-2">
+          <GenericButton onClick={()=> window.location.href = '/'} text='Ir a inicio' type='secondary' />
+          <GenericButton onClick={logout} text='Cerrar sesión' />
+        </div>
+      </header>
+      
+      <section className="col-span-4 row-span-4 col-start-2 row-start-2 mx-7 overflow-y-auto h-[500px]">
         {activeView === 'users' ? <UsersTable /> : <CreateUser />}
       </section>
-      
-      <button 
-        onClick={logout}
-        className="absolute right-5 top-5 bg-red-500 font-semibold text-white rounded-lg px-4 py-2 cursor-pointer hover:bg-red-400 transition-colors"
-      >
-        Cerrar sesión
-      </button>
     </main>
   )
 }

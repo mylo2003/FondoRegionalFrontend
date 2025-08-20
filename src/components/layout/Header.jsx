@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { logout } from "../../services/authService"
 import ButtonSesion from "../common/ButtonSesion";
+import GenericButton from "../common/GenericButton";
 
 export default function Header() {
   const token = localStorage.getItem("token");
@@ -24,8 +25,7 @@ export default function Header() {
           </div>
         </a>
         <div className="flex items-center gap-5">
-          <a href="#material" className="border border-red-500 font-semibold rounded-lg px-4 py-2 cursor-pointer hover:bg-red-400 transition-colors">Material</a>
-
+          <GenericButton onClick={()=> window.location.href = '#material'} text='Material' type='secondary' />
           <ButtonSesion />
         </div>
       </div>

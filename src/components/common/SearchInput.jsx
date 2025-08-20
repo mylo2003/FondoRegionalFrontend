@@ -37,15 +37,12 @@ export default function SearchInput({ onSubmit, onChange, value }) {
           value={value}
           onChange={onChange}
         />
-        {/* <Link to={'/material'}> */}
-          <button
-            type="submit"
-            className="text-white absolute end-2.5 bottom-2.5 bg-red-500 hover:bg-red-400 focus:ring-2 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2"
-          >
-            Buscar
-          </button>
-        {/* </Link> */}
-
+        <button
+          type="submit"
+          className="text-white absolute end-2.5 bottom-2.5 bg-red-500 hover:bg-red-400 focus:ring-2 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2"
+        >
+          Buscar
+        </button>
       </div>
     </form>
   );

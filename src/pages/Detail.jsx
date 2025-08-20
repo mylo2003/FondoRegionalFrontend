@@ -1,16 +1,19 @@
 import { useMemo, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { Navigate, useNavigate, useParams } from "react-router";
 import { User, Eye, ChevronLeft } from 'lucide-react';
 import { useBookStore } from "../services/store/useBookStore";
 import Container from "../components/common/Container";
 import NoBookIndicator from "../components/common/NoBookIndicator";
 import Button from "../components/common/Button";
 import Restricted from "../components/modal/Restricted";
+import { jwtDecode } from "jwt-decode";
+
 
 export default function Detail() {
   const { id } = useParams();
   const { books } = useBookStore();
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -18,11 +21,32 @@ export default function Detail() {
     return books.find((book) => book?.itemnumber == id) || null;
   }, [books, id]);
 
-  const restrictedBook = selectedBook?.restricted === 1 ? true : false;
-
   if (!selectedBook) {
     return <NoBookIndicator className='min-h-screen' />;
   }
+
+  const isAvailable = () => {
+    try {
+      const decoded = jwtDecode(token);
+      console.log(decoded)
+
+      if (decoded.exp * 1000 < Date.now()) {
+        localStorage.removeItem("token");
+        return false;
+      }
+
+      if (!decoded.role) {
+        return false;
+      }
+
+      return true;
+      
+    } catch (error) {
+      return false;
+    }
+  }
+
+  const restrictedBook = (selectedBook?.restricted === 1 && !isAvailable()) ? true : false;
 
   return (
     <Container className={"!my-4"}>
@@ -39,10 +63,6 @@ export default function Detail() {
             href='#' 
             text='Ver pdf' 
           />
-          <div className="flex flex-col border rounded-lg px-2 py-1 border-red-500 leading-0">
-            <span>Subido por Camilo  <User className='size-6 text-red-500 inline-block' /></span>
-            <span>50 vistas  <Eye className='size-6 text-red-500 inline-block' /> </span>
-          </div>
         </div>
       </div>
 

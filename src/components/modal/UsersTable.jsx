@@ -19,13 +19,13 @@ export default function UsersTable( ) {
     deleteUser(id);
   };
 
-  if (loading) return <LoadingIndicator text='usuarios' />
+  if (loading) return <LoadingIndicator className='!h-[500px]'  text='usuarios' />
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 mr-5">
       <div className="flex justify-between items-center">
-        <h3 className="text-2xl font-semibold text-gray-800">Lista de Usuarios</h3>
-        <div className="text-sm text-gray-600">
+        <h3 className="text-2xl font-semibold">Lista de Usuarios</h3>
+        <div className="text-sm text-gray-800">
           Total: {users?.length} usuarios
         </div>
       </div>
@@ -55,7 +55,7 @@ export default function UsersTable( ) {
             <tbody className="bg-white divide-y divide-gray-200">
               {users.map((user) => (
                 <tr key={user?.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-6 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-10 w-10">
                         <div className="h-10 w-10 rounded-full bg-red-100 flex items-center justify-center">
@@ -76,7 +76,7 @@ export default function UsersTable( ) {
                     {user?.fechaModificacion}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">              
-                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                    <span className={`inline-flex uppercase px-2 py-1 text-xs font-semibold rounded-full ${
                       user?.rol === 'Usuario' 
                         ? 'bg-green-100 text-green-800' 
                         : 'bg-red-100 text-red-800'

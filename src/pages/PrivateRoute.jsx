@@ -8,7 +8,7 @@ export default function PrivateRoute({ children, role }) {
     return <Navigate to="/login" replace />;
   }
 
-    try {
+  try {
     const decoded = jwtDecode(token);
 
     if (decoded.exp * 1000 < Date.now()) {

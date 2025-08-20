@@ -18,7 +18,6 @@ export default function CreateUser() {
       return;
     }
 
-    console.log(newUser)
     createUser(newUser);
     
     setNewUser({
@@ -32,14 +31,13 @@ export default function CreateUser() {
     alert('Usuario creado exitosamente');
   };
 
-
   return (
      <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h3 className="text-2xl font-semibold text-gray-800">Crear Nuevo Usuario</h3>
+        <h3 className="text-2xl font-semibold">Crear Nuevo Usuario</h3>
       </div>
       
-      <div className="bg-white rounded-lg shadow-lg p-6">
+      <div className="bg-white rounded-lg p-6">
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
@@ -110,7 +108,14 @@ export default function CreateUser() {
             </div>
           </div>
           
-          <div className="flex justify-end space-x-4 pt-6 border-t">
+          <div className="flex space-x-4 pt-6">
+            <button
+              type="button"
+              onClick={handleCreateUser}
+              className="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors font-semibold"
+            >
+              Crear Usuario
+            </button>
             <button
               type="button"
               onClick={() => setNewUser({
@@ -123,13 +128,6 @@ export default function CreateUser() {
               className="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors"
             >
               Limpiar
-            </button>
-            <button
-              type="button"
-              onClick={handleCreateUser}
-              className="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors font-semibold"
-            >
-              Crear Usuario
             </button>
           </div>
         </div>

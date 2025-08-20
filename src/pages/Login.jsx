@@ -79,7 +79,7 @@ export default function Login() {
       }
     } catch (error) {
       setErrors({
-        general: 'Error de conexión. Intenta nuevamente.'
+        general: 'Credenciales incorrectas. Intenta nuevamente.'
       });
     } 
   };
