@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useUserStore } from "../../services/store/useUserStore";
 import LoadingIndicator from "../common/LoadingIndicator";
 import StatusModal from "./StatusModal";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function CreateUser() {
   const { error, loading, createUser } = useUserStore();
   const [openStatusModal, setOpenStatusModal] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const [newUser, setNewUser] = useState({
     name: "",
@@ -205,12 +207,12 @@ export default function CreateUser() {
                 )}
               </div>
 
-              <div className="md:col-span-2">
+              <div className="md:col-span-2 relative">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Contraseña *
                 </label>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={newUser.password}
                   onChange={(e) =>
                     setNewUser({ ...newUser, password: e.target.value })
@@ -223,6 +225,17 @@ export default function CreateUser() {
                   placeholder="Ingrese una contraseña (mínimo 6 caracteres)"
                   disabled={loading}
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 pt-7 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-5 w-5" />
+                  ) : (
+                    <Eye className="h-5 w-5" />
+                  )}
+                </button>
                 {validationErrors.password && (
                   <p className="mt-1 text-sm text-red-600">
                     {validationErrors.password}
