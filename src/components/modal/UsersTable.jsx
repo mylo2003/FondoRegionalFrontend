@@ -115,8 +115,8 @@ export default function UsersTable() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
                         className={`inline-flex uppercase px-2 py-1 text-xs font-semibold rounded-full ${
-                          user?.rol === "Usuario"
-                            ? "bg-green-100 text-green-800"
+                          user?.rol === "usuario"
+                            ? "bg-amber-100 text-amber-800"
                             : "bg-red-100 text-red-800"
                         }`}
                       >

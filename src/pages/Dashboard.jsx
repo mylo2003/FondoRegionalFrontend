@@ -4,10 +4,10 @@ import UsersTable from "../components/modal/UsersTable";
 import CreateUser from "../components/modal/CreateUser";
 import { logout } from "../services/authService";
 import GenericButton from "../components/common/GenericButton";
-import StatusModal from "../components/modal/StatusModal";
 
 export default function Dashboard() {
   const [activeView, setActiveView] = useState("users");
+  const email = localStorage.getItem("sub");
 
   return (
     <main className="grid grid-cols-5 grid-rows-5 gap-4 min-h-screen overflow-hidden">
@@ -60,7 +60,8 @@ export default function Dashboard() {
           <h2 className="text-3xl font-semibold">Panel Administrativo</h2>
           <p className="text-gray-800">Gestión de usuarios de la biblioteca</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
+          <p className="text-gray-800 border border-red-500 rounded-lg p-2">Bienvenido, {email || "N/A"}</p>
           <GenericButton
             onClick={() => (window.location.href = "/")}
             text="Ir a inicio"

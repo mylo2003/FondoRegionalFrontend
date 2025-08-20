@@ -27,7 +27,6 @@ export default function Detail() {
   const isAvailable = () => {
     try {
       const decoded = jwtDecode(token);
-      console.log(decoded);
 
       if (decoded.exp * 1000 < Date.now()) {
         localStorage.removeItem("token");

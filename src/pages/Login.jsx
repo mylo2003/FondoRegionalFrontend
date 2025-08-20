@@ -63,9 +63,10 @@ export default function Login() {
         localStorage.setItem("token", token);
 
         const decoded = jwtDecode(token);
+        localStorage.setItem("sub", decoded.sub);
+        
         const role = decoded.role;
 
-        console.log(role);
         if (role === "administrador") {
           window.location.href = "/panel";
         } else {

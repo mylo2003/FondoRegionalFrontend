@@ -22,7 +22,6 @@ export const useUserStore = create((set) => ({
         loading: false,
       });
 
-      console.log(data);
     } catch (error) {
       set({ users: [], error: true, loading: false });
       console.error(error);
@@ -62,7 +61,6 @@ export const useUserStore = create((set) => ({
 
       set({ error: false, loading: false });
 
-      console.log(data);
     } catch (error) {
       set({ error: true, loading: false });
       console.error(error);
