@@ -4,6 +4,7 @@ import UsersTable from "../components/modal/UsersTable";
 import CreateUser from "../components/modal/CreateUser";
 import { logout } from "../services/authService";
 import GenericButton from "../components/common/GenericButton";
+import StatusModal from "../components/modal/StatusModal";
 
 export default function Dashboard() {
   const [activeView, setActiveView] = useState("users");
