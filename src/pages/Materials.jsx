@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router";
 import { useBookStore } from "../services/store/useBookStore";
+import { ChevronRight, ChevronLeft } from 'lucide-react';
 import Container from "../components/common/Container";
 import BookCard from "../components/common/BookCard";
-import ArrowRight from "../components/Icons/ArrowRight";
-import ArrowLeft from "../components/Icons/ArrowLeft";
 import SearchInput from "../components/common/SearchInput";
 import LoadingIndicator from "../components/common/LoadingIndicator";
 import ErrorIndicator from "../components/common/ErrorIndicator";
@@ -61,7 +60,7 @@ export default function Materials() {
             <button
               className="hover:text-red-400 cursor-pointer"
             >
-              <ArrowLeft />
+              <ChevronLeft />
             </button>
         </Link>
 
@@ -95,7 +94,7 @@ export default function Materials() {
             onClick={() => handlePageChange(page - 1)}
             className={`${page < 1 ? "text-gray-50 disabled:cursor-not-allowed" : ""} cursor-pointer flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-800 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700`}
           >
-            <ArrowLeft />
+            <ChevronLeft />
             Anterior
           </button>
           <button
@@ -104,7 +103,7 @@ export default function Materials() {
             className={`${totalpages <= page + 1 ? "text-gray-50 disabled:cursor-not-allowed" : ""} cursor-pointer flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-800 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700`}
           >
             Siguiente
-            <ArrowRight />
+            <ChevronRight />
           </button>
         </div>
         <div>

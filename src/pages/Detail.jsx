@@ -1,12 +1,10 @@
 import { useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router";
+import { User, Eye, ChevronLeft } from 'lucide-react';
 import { useBookStore } from "../services/store/useBookStore";
 import Container from "../components/common/Container";
 import NoBookIndicator from "../components/common/NoBookIndicator";
 import Button from "../components/common/Button";
-import Views from "../components/icons/Views";
-import User from "../components/icons/User";
-import ArrowLeft from "../components/icons/ArrowLeft";
 import Restricted from "../components/modal/Restricted";
 
 export default function Detail() {
@@ -30,7 +28,7 @@ export default function Detail() {
     <Container className={"!my-4"}>
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <button className="hover:text-red-400 cursor-pointer" onClick={() => navigate(-1)}><ArrowLeft /></button>
+          <button className="hover:text-red-400 cursor-pointer" onClick={() => navigate(-1)}><ChevronLeft /></button>
           <h2 className="text-3xl font-bold">Libro Consultado #{selectedBook.itemnumber}</h2>
         </div>
         <div className="flex items-center gap-5 text-right">
@@ -43,7 +41,7 @@ export default function Detail() {
           />
           <div className="flex flex-col border rounded-lg px-2 py-1 border-red-500 leading-0">
             <span>Subido por Camilo  <User className='size-6 text-red-500 inline-block' /></span>
-            <span>50 vistas  <Views className='size-6 text-red-500 inline-block' /> </span>
+            <span>50 vistas  <Eye className='size-6 text-red-500 inline-block' /> </span>
           </div>
         </div>
       </div>
