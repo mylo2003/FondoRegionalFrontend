@@ -5,7 +5,7 @@ export default function GenericButton({ onClick, text, type = "primary" }) {
   return (
     <button
       onClick={onClick}
-      className={`${style} font-semibold rounded-lg px-4 py-2 cursor-pointer hover:bg-red-400 transition-colors`}
+      className={`${style} text-xs md:text-base font-semibold rounded-lg px-4 py-2 cursor-pointer hover:bg-red-400 transition-colors`}
     >
       {text}
     </button>

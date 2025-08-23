@@ -57,20 +57,23 @@ export default function Materials() {
 
   return (
     <Container className="!my-0 py-10 max-w-7xl">
-      <div className="flex justify-between items-center max-w-7xl mx-4 mb-7">
-        <Link to={"/"}>
-          <button className="hover:text-red-400 cursor-pointer">
-            <ChevronLeft />
-          </button>
-        </Link>
+      <div className="flex flex-col md:flex-row  justify-between md:items-center max-w-7xl mx-4 mb-7 gap-2 md:gap-0">
+        <div className="flex items-center gap-2">
+          <Link to={"/"}>
+            <button className="hover:text-red-400 cursor-pointer">
+              <ChevronLeft />
+            </button>
+          </Link>
 
-        <div className="flex flex-col gap-2 ">
-          <h2 className="text-4xl font-bold">Material Consultado</h2>
-          <span className="text-gray-800">
-            Acceda a todo el material del Fondo Regional digitalizado, para
-            usted
-          </span>
+          <div className="flex flex-col gap-2 ">
+            <h2 className="text-base md:text-4xl font-bold">Material Consultado</h2>
+            <span className="text-gray-800 md:text-base text-xs">
+              Acceda a todo el material del Fondo Regional digitalizado, para
+              usted
+            </span>
+          </div>
         </div>
+        
         <SearchInput
           onSubmit={handleSearch}
           value={searchValue}
@@ -78,7 +81,7 @@ export default function Materials() {
         />
       </div>
 
-      <div className="grid grid-cols-4 place-items-center space-y-2">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 place-items-center space-y-2">
         {books.length <= 0 ? (
           <NoBookIndicator className="min-h-80" />
         ) : (

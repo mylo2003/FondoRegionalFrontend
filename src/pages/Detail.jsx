@@ -47,7 +47,7 @@ export default function Detail() {
     selectedBook?.restricted === 1 && !isAvailable() ? true : false;
 
   return (
-    <Container className={"!my-4"}>
+    <Container className={"!my-4 px-3 md:px-0"}>
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
           <button
@@ -56,13 +56,13 @@ export default function Detail() {
           >
             <ChevronLeft />
           </button>
-          <h2 className="text-3xl font-bold">
+          <h2 className="text-base md:text-3xl font-bold">
             Libro Consultado #{selectedBook.itemnumber}
           </h2>
         </div>
         <div className="flex items-center gap-5 text-right">
           {restrictedBook && (
-            <span className="leading-4">
+            <span className="leading-4 text-xs md:text-base">
               Debes acercarte a nuestra biblioteca <br /> para acceder a este
               libro
             </span>
@@ -71,7 +71,7 @@ export default function Detail() {
             onClick={() => {
               if (restrictedBook) return setOpenModal(!openModal);
             }}
-            style="!text-sm !py-2 !px-4"
+            style="!text-xs md:!text-sm !py-1 !px-2 md:!py-2 md:!px-4"
             href="#"
             text="Ver pdf"
           />
@@ -81,7 +81,7 @@ export default function Detail() {
       <article className="mt-4 h-full mx-auto bg-white rounded-xl shadow-xl border border-amber-200 overflow-hidden">
         <div className="bg-amber-500 h-2"></div>
         <div className="p-6">
-          <div className="grid grid-cols-3 grid-rows-4 gap-3">
+          <div className="grid md:grid-cols-3 grid-rows-4 gap-3">
             <div className="row-span-4 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border-2 border-dashed border-amber-300 flex flex-col items-center justify-center flex-shrink-0 shadow-inner">
               <svg
                 className="w-24 h-24 text-amber-400"
@@ -100,7 +100,7 @@ export default function Detail() {
               <h3 className="text-xs font-semibold text-amber-600 tracking-wide mb-2">
                 TÍTULO
               </h3>
-              <p className="text-lg font-semibold text-gray-800 leading-tight">
+              <p className="text-sm md:text-lg font-semibold text-gray-800 leading-tight">
                 {selectedBook?.title?.replace(" /", "") ||
                   "Título no disponible"}
               </p>

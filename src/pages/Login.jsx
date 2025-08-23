@@ -127,7 +127,7 @@ export default function Login() {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors ${
+                  className={`w-full text-sm md:text-base pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors ${
                     errors.email
                       ? "border-red-300 bg-red-50"
                       : "border-gray-300 bg-white hover:border-gray-400"
@@ -157,7 +157,7 @@ export default function Login() {
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
-                  className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors ${
+                  className={`w-full text-sm md:text-base pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors ${
                     errors.password
                       ? "border-red-300 bg-red-50"
                       : "border-gray-300 bg-white hover:border-gray-400"

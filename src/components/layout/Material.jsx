@@ -16,16 +16,16 @@ export default function Material() {
 
   return (
     <div id="material" className="">
-      <Container className={"!my-0 py-15  max-w-7xl"}>
-        <div className="flex flex-col items-center gap-2 mb-5">
-          <h2 className="text-4xl font-bold">Material Consultado</h2>
-          <span className="">
+      <Container className={"!my-0 pt-5 md:py-15 px-10 md:px-0 max-w-7xl"}>
+        <div className="flex flex-col md:items-center gap-2 mb-5">
+          <h2 className="text-2xl md:text-4xl font-bold text-center">Material Consultado</h2>
+          <span className="text-sm md:text-base text-center md:text-left">
             Acceda a todo el material del Fondo Regional digitalizado, para
             usted
           </span>
         </div>
 
-        <div className="grid grid-cols-4 place-items-center">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 place-items-center">
           {loading ? (
             <LoadingIndicator className="min-h-60" />
           ) : error ? (
