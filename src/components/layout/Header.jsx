@@ -22,7 +22,7 @@ export default function Header() {
             </span>
           </div>
         </a>
-        <div className="flex items-center gap-3">
+        <div className="items-center gap-3 hidden md:flex">
           { email &&  <p className="text-gray-800 border border-red-500 rounded-lg p-2 text-xs md:text-base">Bienvenido, {email || "N/A"}</p>}
           <GenericButton
             onClick={() => (window.location.href = "#material")}

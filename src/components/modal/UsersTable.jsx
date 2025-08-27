@@ -55,10 +55,10 @@ export default function UsersTable() {
 
   return (
     <>
-      <div className="space-y-6 mr-5">
+      <div className="md:space-y-6 md:mr-7">
         <div className="flex justify-between items-center">
-          <h3 className="text-2xl font-semibold">Lista de Usuarios</h3>
-          <div className="text-sm text-gray-800">
+          <h3 className="md:text-2xl font-semibold">Lista de Usuarios</h3>
+          <div className="text-xs md:text-sm text-gray-800">
             Total: {users?.length || 0} usuarios
           </div>
         </div>
@@ -92,11 +92,11 @@ export default function UsersTable() {
                       <div className="flex items-center">
                         <div className="flex-shrink-0 h-10 w-10">
                           <div className="h-10 w-10 rounded-full bg-red-100 flex items-center justify-center">
-                            <User className="h-6 w-6 text-red-600" />
+                            <User className="size-6 text-red-600" />
                           </div>
                         </div>
                         <div className="ml-4">
-                          <div className="text-sm font-medium text-gray-900">
+                          <div className="text-xs md:text-sm font-medium text-gray-900">
                             {user?.nombre} {user?.apellido}
                           </div>
                         </div>
@@ -104,12 +104,12 @@ export default function UsersTable() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div>
-                        <div className="text-sm text-gray-900">
+                        <div className="text-xs md:text-sm text-gray-900">
                           {user?.correo}
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500">
                       {user?.fechaModificacion}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -123,13 +123,13 @@ export default function UsersTable() {
                         {user.rol}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm font-medium">
                       <div className="flex space-x-2">
                         <button
                           onClick={() => handleDeleteUser(user.id)}
                           className="text-red-600 hover:text-red-900 p-1 rounded hover:bg-red-50"
                         >
-                          <Trash2 className="h-4 w-4" />
+                          <Trash2 className="size-4" />
                         </button>
                       </div>
                     </td>
@@ -139,7 +139,7 @@ export default function UsersTable() {
             </table>
           </div>
           {!loading && (!users || users.length === 0) && (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center text-xs md:text-base py-8 text-gray-500">
               No hay usuarios registrados
             </div>
           )}

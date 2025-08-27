@@ -102,16 +102,16 @@ export default function CreateUser() {
 
   return (
     <>
-      <div className="space-y-6">
+      <div className="md:space-y-6">
         <div className="flex justify-between items-center">
-          <h3 className="text-2xl font-semibold">Crear Nuevo Usuario</h3>
+          <h3 className="md:text-2xl font-semibold">Crear Nuevo Usuario</h3>
         </div>
 
         <div className="bg-white rounded-lg p-6">
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs md:text-sm font-medium text-gray-700 mb-2">
                   Nombre *
                 </label>
                 <input
@@ -120,7 +120,7 @@ export default function CreateUser() {
                   onChange={(e) =>
                     setNewUser({ ...newUser, name: e.target.value })
                   }
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
+                  className={`w-full px-3 py-2 border placeholder:text-xs md:placeholder:text-base rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
                     validationErrors.name ? "border-red-500" : "border-gray-300"
                   }`}
                   placeholder="Ingrese el nombre"
@@ -143,7 +143,7 @@ export default function CreateUser() {
                   onChange={(e) =>
                     setNewUser({ ...newUser, lastName: e.target.value })
                   }
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
+                  className={`w-full px-3 py-2 border  placeholder:text-xs md:placeholder:text-base rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
                     validationErrors.lastName
                       ? "border-red-500"
                       : "border-gray-300"
@@ -159,7 +159,7 @@ export default function CreateUser() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs md:text-sm font-medium text-gray-700 mb-2">
                   Correo Electrónico *
                 </label>
                 <input
@@ -168,7 +168,7 @@ export default function CreateUser() {
                   onChange={(e) =>
                     setNewUser({ ...newUser, email: e.target.value })
                   }
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
+                  className={`w-full px-3 py-2 border placeholder:text-xs md:placeholder:text-base rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
                     validationErrors.email
                       ? "border-red-500"
                       : "border-gray-300"
@@ -184,7 +184,7 @@ export default function CreateUser() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs md:text-sm font-medium text-gray-700 mb-2">
                   Rol *
                 </label>
                 <select
@@ -192,13 +192,13 @@ export default function CreateUser() {
                   onChange={(e) =>
                     setNewUser({ ...newUser, role: e.target.value })
                   }
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
+                  className={`w-full px-3 text-xs md:text-base py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
                     validationErrors.role ? "border-red-500" : "border-gray-300"
                   }`}
                   disabled={loading}
                 >
-                  <option value="Usuario">Usuario</option>
-                  <option value="Administrador">Administrador</option>
+                  <option className="text-xs md:text-base" value="Usuario">Usuario</option>
+                  <option className="text-xs md:text-base" value="Administrador">Administrador</option>
                 </select>
                 {validationErrors.role && (
                   <p className="mt-1 text-sm text-red-600">
@@ -208,7 +208,7 @@ export default function CreateUser() {
               </div>
 
               <div className="md:col-span-2 relative">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs md:text-sm font-medium text-gray-700 mb-2">
                   Contraseña *
                 </label>
                 <input
@@ -217,7 +217,7 @@ export default function CreateUser() {
                   onChange={(e) =>
                     setNewUser({ ...newUser, password: e.target.value })
                   }
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
+                  className={`w-full px-3 py-2 border placeholder:text-xs md:placeholder:text-base rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
                     validationErrors.password
                       ? "border-red-500"
                       : "border-gray-300"
@@ -231,9 +231,9 @@ export default function CreateUser() {
                   className="absolute inset-y-0 right-0 pt-7 pr-3 flex items-center text-gray-400 hover:text-gray-600"
                 >
                   {showPassword ? (
-                    <EyeOff className="h-5 w-5" />
+                    <EyeOff className="size-5" />
                   ) : (
-                    <Eye className="h-5 w-5" />
+                    <Eye className="size-5" />
                   )}
                 </button>
                 {validationErrors.password && (
@@ -249,7 +249,7 @@ export default function CreateUser() {
                 type="button"
                 onClick={handleCreateUser}
                 disabled={loading}
-                className="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-6 py-2 bg-red-500 text-xs md:text-base text-white rounded-md hover:bg-red-600 transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? "Creando..." : "Crear Usuario"}
               </button>
@@ -257,7 +257,7 @@ export default function CreateUser() {
                 type="button"
                 onClick={handleClearForm}
                 disabled={loading}
-                className="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-2 text-gray-700  text-xs md:text-base bg-gray-200 rounded-md hover:bg-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Limpiar
               </button>
