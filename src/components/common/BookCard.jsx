@@ -16,7 +16,7 @@ export default function BookCard({ data }) {
         window.scrollTo({ top: 0 });
         addView();
       }}
-      className="w-72 bg-white rounded-lg shadow-lg border border-amber-200 p-4 hover:-translate-y-2 transition-transform"
+      className="w-60 md:w-72 mb-2 md:mb-0 bg-white rounded-lg shadow-lg border border-amber-200 p-4 hover:-translate-y-2 transition-transform"
     >
       <div className="bg-amber-500 h-1 rounded mb-4"></div>
 

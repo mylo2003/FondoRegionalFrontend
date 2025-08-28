@@ -10,6 +10,7 @@ import "@fontsource-variable/roboto-slab";
 import "./styles/index.css";
 import Login from "./pages/Login.jsx";
 import PrivateRoute from "./pages/PrivateRoute.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -19,6 +20,7 @@ createRoot(document.getElementById("root")).render(
           <Route index element={<Home />} />
           <Route path="material" element={<Materials />} />
           <Route path="libro/:id" element={<Detail />} />
+           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="login" element={<Login />} />
         <Route
