@@ -25,7 +25,7 @@ export default function Header() {
         <div className="items-center gap-3 hidden md:flex">
           { email &&  <p className="text-gray-800 border border-red-500 rounded-lg p-2 text-xs md:text-base">Bienvenido, {email || "N/A"}</p>}
           <GenericButton
-            onClick={() => (window.location.href = "#material")}
+            onClick={() => (window.location.href = "/material")}
             text="Material"
             type="secondary"
           />

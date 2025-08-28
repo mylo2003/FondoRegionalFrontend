@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useBookStore } from "../../services/store/useBookStore";
 import { useStatsStore } from "../../services/store/useStatsStore";
-import { Users, Book, Eye } from "lucide-react";
+import { Users, Book, Eye, Download } from "lucide-react";
 
 export default function Stats() {
   const { views, downloads, getStats } = useStatsStore();
@@ -22,7 +22,7 @@ export default function Stats() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <Users className="size-8 md:size-16" />
+          <Download className="size-8 md:size-16" />
           <div className="flex flex-row md:flex-col gap-2 md:gap-0">
             <span>{downloads || 0}</span>
             <span>Descargas</span>

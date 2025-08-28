@@ -7,10 +7,12 @@ import NoBookIndicator from "../components/common/NoBookIndicator";
 import Restricted from "../components/modal/Restricted";
 import { jwtDecode } from "jwt-decode";
 import { getNumbers } from "../utils/ExtractNumber";
+import { useStatsStore } from "../services/store/useStatsStore";
 
 export default function Detail() {
   const { id } = useParams();
   const { books } = useBookStore();
+  const { addDownload } = useStatsStore();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
@@ -56,17 +58,8 @@ export default function Detail() {
 
     const url = `/pdfs/${cleanCode}.pdf`;
 
-    fetch(url, { method: "HEAD" })
-      .then((res) => {
-        if (res.ok) {
-          window.open(url, "_blank");
-        } else {
-          console.log("El PDF no existe");
-        }
-      })
-      .catch(() => {
-        console.log("Error al verificar el PDF");
-      });
+    window.open(url, "_blank");
+    addDownload();
   };
 
   return (
@@ -117,8 +110,9 @@ export default function Detail() {
                 </svg>
               ) : (
                 <img
+                  className="rounded-xl"
                   src={`/jpgs/${cleanCode}.jpg`}
-                  alt=""
+                  alt={selectedBook?.title?.replace(" /", "") || "Título no disponible"}
                   onError={() => setNoImage(true)}
                 />
               )}

@@ -21,7 +21,7 @@ export default function BookCard({ data }) {
       <div className="bg-amber-500 h-1 rounded mb-4"></div>
 
       <div className="flex gap-3">
-        <div className="w-24 h-52 bg-gradient-to-br from-amber-50 to-orange-50 rounded border-2 border-dashed border-amber-300 flex items-center justify-center flex-shrink-0">
+        <div className="w-28 h-52 bg-gradient-to-br from-amber-50 to-orange-50 rounded border-2 border-dashed border-amber-300 flex items-center justify-center flex-shrink-0">
           {noImage ? (
             <svg
               className="w-8 h-8 text-amber-400"
