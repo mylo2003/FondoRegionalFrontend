@@ -1,9 +1,11 @@
 import { Link } from "react-router";
 import { useStatsStore } from "../../services/store/useStatsStore";
 import { getNumbers } from "../../utils/ExtractNumber";
+import { useState } from "react";
 
 export default function BookCard({ data }) {
   const { addView } = useStatsStore();
+  const [noImage, setNoImage] = useState(false);
 
   const cleanCode = getNumbers(data?.barcode);
   
@@ -20,19 +22,25 @@ export default function BookCard({ data }) {
 
       <div className="flex gap-3">
         <div className="w-24 h-52 bg-gradient-to-br from-amber-50 to-orange-50 rounded border-2 border-dashed border-amber-300 flex items-center justify-center flex-shrink-0">
-          <svg
-            className="w-8 h-8 text-amber-400"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              fillRule="evenodd"
-              d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-              clipRule="evenodd"
+          {noImage ? (
+            <svg
+              className="w-8 h-8 text-amber-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+                clipRule="evenodd"
+              />
+            </svg>
+          ) : (
+            <img
+              src={`/jpgs/${cleanCode}.jpg`}
+              alt=""
+              onError={() => setNoImage(true)}
             />
-          </svg>
-          
-          <img src={`/jpgs/${cleanCode}.jpg`} alt="" />
+          )}
         </div>
 
         <div className="flex-1 space-y-2">

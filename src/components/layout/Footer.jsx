@@ -12,7 +12,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src="/logoBiblioLight.webp" alt="" />
+              <img src="/brand/logoBiblioLight.webp" alt="" />
             </a>
           </div>
           <div>

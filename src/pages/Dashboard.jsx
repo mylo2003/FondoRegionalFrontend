@@ -15,7 +15,7 @@ export default function Dashboard() {
         <div className="py-2 mx-6 mt-5 rounded-xl bg-white flex justify-center items-center">
           <div className="rounded h-12 w-30  flex items-center justify-center text-white font-bold text-sm">
             <img
-              src="/logo.webp"
+              src="/brand/logo.webp"
               alt="Logo Fondo Regional"
               className="select-none"
             />

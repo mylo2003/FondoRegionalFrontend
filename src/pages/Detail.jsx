@@ -1,10 +1,9 @@
 import { useMemo, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router";
-import { User, Eye, ChevronLeft } from "lucide-react";
+import { useNavigate, useParams } from "react-router";
+import { ChevronLeft } from "lucide-react";
 import { useBookStore } from "../services/store/useBookStore";
 import Container from "../components/common/Container";
 import NoBookIndicator from "../components/common/NoBookIndicator";
-import Button from "../components/common/Button";
 import Restricted from "../components/modal/Restricted";
 import { jwtDecode } from "jwt-decode";
 import { getNumbers } from "../utils/ExtractNumber";
@@ -16,12 +15,12 @@ export default function Detail() {
   const token = localStorage.getItem("token");
 
   const [openModal, setOpenModal] = useState(false);
+  const [noImage, setNoImage] = useState(false);
 
-  
   const selectedBook = useMemo(() => {
     return books.find((book) => book?.itemnumber == id) || null;
   }, [books, id]);
-  
+
   if (!selectedBook) {
     return <NoBookIndicator className="min-h-screen" />;
   }
@@ -50,6 +49,26 @@ export default function Detail() {
   const restrictedBook =
     selectedBook?.restricted === 1 && !isAvailable() ? true : false;
 
+  const handleClick = () => {
+    if (restrictedBook) {
+      return setOpenModal(!openModal);
+    }
+
+    const url = `/pdfs/${cleanCode}.pdf`;
+
+    fetch(url, { method: "HEAD" })
+      .then((res) => {
+        if (res.ok) {
+          window.open(url, "_blank");
+        } else {
+          console.log("El PDF no existe");
+        }
+      })
+      .catch(() => {
+        console.log("Error al verificar el PDF");
+      });
+  };
+
   return (
     <Container className={"!my-4 px-3 md:px-0"}>
       <div className="flex justify-between items-center">
@@ -71,14 +90,11 @@ export default function Detail() {
               libro
             </span>
           )}
-          <Button
-            onClick={() => {
-              if (restrictedBook) return setOpenModal(!openModal);
-            }}
-            style="!text-xs md:!text-sm !py-1 !px-2 md:!py-2 md:!px-4"
-            href="#"
-            text="Ver pdf"
-          />
+          <button 
+            className="text-xs md:text-sm py-1 px-2 md:py-2 md:px-4 cursor-pointer bg-red-500 flex items-center font-semibold text-white rounded-lg hover:bg-red-400 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed" 
+            onClick={handleClick}>
+            Ver PDF
+          </button>
         </div>
       </div>
 
@@ -87,18 +103,25 @@ export default function Detail() {
         <div className="p-6">
           <div className="grid md:grid-cols-3 grid-rows-4 gap-3">
             <div className="row-span-4 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border-2 border-dashed border-amber-300 flex flex-col items-center justify-center flex-shrink-0 shadow-inner">
-              {/* <svg
-                className="w-24 h-24 text-amber-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-                  clipRule="evenodd"
+              {noImage ? (
+                <svg
+                  className="w-24 h-24 text-amber-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              ) : (
+                <img
+                  src={`/jpgs/${cleanCode}.jpg`}
+                  alt=""
+                  onError={() => setNoImage(true)}
                 />
-              </svg> */}
-               <img src={`/jpgs/${cleanCode}.jpg`} alt="" />
+              )}
             </div>
 
             <div className="bg-orange-50 rounded-lg p-4 border border-amber-200">

@@ -9,7 +9,7 @@ export default function Header() {
       <div className="max-w-6xl flex flex-col md:flex-row items-center justify-between mx-auto gap-2 md:gap-0">
         <a href="/" className="flex items-center gap-3">
           <img
-            src="/logo.webp"
+            src="/brand/logo.webp"
             alt="Logo Fondo Regional"
             className="rounded w-20 md:w-30 select-none"
           />
