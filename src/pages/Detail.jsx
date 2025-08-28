@@ -7,6 +7,7 @@ import NoBookIndicator from "../components/common/NoBookIndicator";
 import Button from "../components/common/Button";
 import Restricted from "../components/modal/Restricted";
 import { jwtDecode } from "jwt-decode";
+import { getNumbers } from "../utils/ExtractNumber";
 
 export default function Detail() {
   const { id } = useParams();
@@ -16,13 +17,16 @@ export default function Detail() {
 
   const [openModal, setOpenModal] = useState(false);
 
+  
   const selectedBook = useMemo(() => {
     return books.find((book) => book?.itemnumber == id) || null;
   }, [books, id]);
-
+  
   if (!selectedBook) {
     return <NoBookIndicator className="min-h-screen" />;
   }
+
+  const cleanCode = getNumbers(selectedBook?.barcode);
 
   const isAvailable = () => {
     try {
@@ -83,7 +87,7 @@ export default function Detail() {
         <div className="p-6">
           <div className="grid md:grid-cols-3 grid-rows-4 gap-3">
             <div className="row-span-4 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border-2 border-dashed border-amber-300 flex flex-col items-center justify-center flex-shrink-0 shadow-inner">
-              <svg
+              {/* <svg
                 className="w-24 h-24 text-amber-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
@@ -93,7 +97,8 @@ export default function Detail() {
                   d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
                   clipRule="evenodd"
                 />
-              </svg>
+              </svg> */}
+               <img src={`/jpgs/${cleanCode}.jpg`} alt="" />
             </div>
 
             <div className="bg-orange-50 rounded-lg p-4 border border-amber-200">

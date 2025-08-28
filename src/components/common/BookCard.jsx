@@ -1,9 +1,12 @@
 import { Link } from "react-router";
 import { useStatsStore } from "../../services/store/useStatsStore";
+import { getNumbers } from "../../utils/ExtractNumber";
 
 export default function BookCard({ data }) {
   const { addView } = useStatsStore();
 
+  const cleanCode = getNumbers(data?.barcode);
+  
   return (
     <Link
       to={`/libro/${data?.itemnumber}`}
@@ -28,6 +31,8 @@ export default function BookCard({ data }) {
               clipRule="evenodd"
             />
           </svg>
+          
+          <img src={`/jpgs/${cleanCode}.jpg`} alt="" />
         </div>
 
         <div className="flex-1 space-y-2">
